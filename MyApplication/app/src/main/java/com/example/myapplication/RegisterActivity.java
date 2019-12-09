@@ -31,17 +31,22 @@ public class RegisterActivity extends AsyncTask<String, Void, String> {
             URL url = new URL("http://"+ur+":8080/AndroidWeb/androidDB.jsp");
 
             if(strings[0].equals("login")){
-                Log.d("State","로그인 들어감");
                 url = new URL("http://"+ur+":8080/AndroidWeb/androidDB.jsp");
+                sendMsg = "id=" + strings[1] + "&pw=" + strings[2];
             }
             else if(strings[0].equals("join")){
-                Log.d("State","조인 들어감");
                 url = new URL("http://"+ur+":8080/AndroidWeb/join.jsp");
+                sendMsg = "id=" + strings[1] + "&pw=" + strings[2];
             }
             else if(strings[0].equals("getBookList")){
-                Log.d("State","조인 들어감");
                 url = new URL("http://"+ur+":8080/AndroidWeb/getBookList.jsp");
+                sendMsg = "id=" + strings[1] + "&pw=" + strings[2];
             }
+            else if(strings[0].equals("updatePage")){
+                url = new URL("http://"+ur+":8080/AndroidWeb/updatePage.jsp");
+                sendMsg = "userid=" + strings[1] + "&title=" + strings[2] + "&page=" + strings[3];
+            }
+
 
 
             HttpURLConnection conn = (HttpURLConnection) url.openConnection();
@@ -50,7 +55,7 @@ public class RegisterActivity extends AsyncTask<String, Void, String> {
             OutputStreamWriter osw = new OutputStreamWriter(conn.getOutputStream());
 
             // 전송할 데이터. GET 방식으로 작성
-            sendMsg = "id=" + strings[1] + "&pw=" + strings[2];
+
 
             osw.write(sendMsg);
             osw.flush();

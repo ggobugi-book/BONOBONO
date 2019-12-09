@@ -25,6 +25,7 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.CustomView
     private ArrayList<Dic> mList;
     private Context context;
     HashMap hm;
+    String id;
 
 
 
@@ -42,10 +43,11 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.CustomView
         }
     }
 
-    public CustomAdapter(ArrayList<Dic> list, Context context, HashMap hm) {
+    public CustomAdapter(ArrayList<Dic> list, Context context, HashMap hm,String id) {
         this.mList = list;
         this.context = context;
         this.hm = hm;
+        this.id = id;
     }
 
     @Override
@@ -76,10 +78,10 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.CustomView
 
                 intent.putExtra("filename",title);
                 intent.putExtra("page",hm.get(title).toString());
+                intent.putExtra("userid",id);
+
+
                 context.startActivity(intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK));//새로운 intent를 실행하기위해서 플래그를 붙여줘야한다.
-
-                Toast.makeText(context,title,Toast.LENGTH_SHORT).show();
-
 
             }
         });
