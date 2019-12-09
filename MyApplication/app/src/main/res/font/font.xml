@@ -4,4 +4,14 @@
         android:fontStyle="italic"
         android:fontWeight="400"
         android:font="@font/bmhannapro" />
+
+    <font
+        android:fontStyle="italic"
+        android:fontWeight="400"
+        android:font="@font/snowballs" />
+
+    <font
+        android:fontStyle="italic"
+        android:fontWeight="400"
+        android:font="@font/photograph_signature" />
 </font-family>

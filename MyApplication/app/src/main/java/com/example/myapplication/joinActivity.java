@@ -12,7 +12,6 @@ import android.widget.TextView;
 
 public class joinActivity extends AppCompatActivity {
 
-    Button confirm;
     Button check;
     EditText userid;
     TextView txtResult;
@@ -40,7 +39,7 @@ public class joinActivity extends AppCompatActivity {
 
                     if(result.equals("1")){
                         Intent intent1 = new Intent(getApplicationContext(),PopupActivity.class);
-                        intent1.putExtra("data", "있는 아이디입니다.");
+                        intent1.putExtra("data", "존재하는 아이디입니다.");
                         startActivity(intent1);
 
 

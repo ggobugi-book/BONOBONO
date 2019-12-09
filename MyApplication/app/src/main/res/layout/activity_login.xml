@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@android:color/white"
+    android:background="@drawable/login_back"
     tools:context=".loginActivity">
 
 
@@ -44,26 +44,36 @@
         </LinearLayout>
 
         <LinearLayout
-            android:layout_below="@+id/topLayout"
-
-
             android:id="@+id/imageLayout"
 
 
             android:layout_width="match_parent"
+
+
             android:layout_height="wrap_content"
+            android:layout_below="@+id/topLayout"
+            android:layout_marginTop="25dp"
             android:orientation="vertical"
-            android:layout_marginTop="75dp"
 
             >
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="ggo g book"
+                android:fontFamily="@font/snowballs"
+                android:textSize="150px"
+                android:textAlignment="center"
+                android:textColor="#fbb800"
+                android:layout_marginBottom="5px"/>
 
             <ImageView
                 android:id="@+id/imageView3"
                 android:layout_width="match_parent"
-                android:layout_height="200dp"
-                android:layout_marginTop="30dp"
-                app:srcCompat="@drawable/mybooklogo"
-                />
+                android:layout_height="125dp"
+
+                app:srcCompat="@drawable/logo1" />
+
+
         </LinearLayout>
 
         <LinearLayout
@@ -76,7 +86,7 @@
             android:layout_alignParentTop="true"
 
             android:orientation="horizontal"
-            android:layout_marginTop="420dp"
+            android:layout_marginTop="300dp"
             android:layout_marginRight="20dp"
             >
             <TextView
