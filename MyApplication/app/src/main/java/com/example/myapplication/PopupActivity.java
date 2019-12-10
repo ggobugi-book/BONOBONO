@@ -9,7 +9,6 @@ import android.view.Window;
 import android.widget.Button;
 import android.widget.TextView;
 
-
 public class PopupActivity extends Activity {
 
     TextView txtText;
@@ -23,7 +22,7 @@ public class PopupActivity extends Activity {
         setContentView(R.layout.activity_popup);
 
         //UI 객체생성
-        txtText = (TextView)findViewById(R.id.txtText1);
+        txtText = (TextView)findViewById(R.id.txtText);
 
         //데이터 가져오기
         Intent intent = getIntent();

@@ -5,7 +5,8 @@ package com.example.myapplication;
 
         import android.content.Intent;
         import android.graphics.Point;
-
+        import android.graphics.Typeface;
+        import android.os.Binder;
         import android.os.Bundle;
         import android.util.Log;
         import android.view.Display;
@@ -36,11 +37,13 @@ public class myBook extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_my_book);
 
+        Typeface fontAwsome = Typeface.createFromAsset(getAssets(), "fontawesome-webfont.ttf");
         Intent intent = getIntent();
         title = intent.getExtras().getString("filename");
         userid = intent.getExtras().getString("userid");
 
         Button rbtn = (Button)findViewById(R.id.relation);
+        rbtn.setTypeface(fontAwsome);
 
 
         t.start();
