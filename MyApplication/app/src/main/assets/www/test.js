@@ -29,7 +29,8 @@ networkSeries.fontSize = 10;
 
 var selectedNode;
 
-*//*var label = chart.createChild(am4core.Label);
+
+var label = chart.createChild(am4core.Label);
 label.text = "Click on nodes to link"
 label.x = 50;
 label.y = 50;
@@ -61,7 +62,27 @@ networkSeries.nodes.template.events.on("up", function (event) {
     }
   }
 })*/
+
+
 window.onload=function(){
+
+
+ document.getElementById('title').value =location.search
+
+//fnGetParameterByName('text');
+
+
+function fnGetParameterByName(name) {
+
+    name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
+    var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
+    results = regex.exec(location.search);
+
+    var result = results === null ? "G" : decodeURIComponent(results[1].replace(/\+/g, " "));
+}
+
+
+
 Highcharts.chart('container', {
 
     title: {

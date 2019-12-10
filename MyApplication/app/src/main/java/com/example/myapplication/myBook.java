@@ -62,6 +62,8 @@ public class myBook extends AppCompatActivity {
             rbtn.setOnClickListener(new View.OnClickListener() {
                 public void onClick(View view) {
                     Intent intent = new Intent(getApplicationContext(),RelationTest.class);
+                    intent.putExtra("title",title);
+                    intent.putExtra("page",pagenumber+"");
                     startActivity(intent);
                 }
             });
@@ -147,11 +149,9 @@ public class myBook extends AppCompatActivity {
 
     class AutoSave implements Runnable{
 
-        AutoSave(){
+        AutoSave(){}
 
-        }
         public void run(){
-
                 try {
                     while (!Thread.currentThread().isInterrupted()) {
                         RegisterActivity task = new RegisterActivity();
@@ -163,7 +163,7 @@ public class myBook extends AppCompatActivity {
                     e.getMessage();
                 }
             }
-        }
+    }
 
 
     private String readFromAssets(String filename) throws Exception {

@@ -1,5 +1,8 @@
 package com.db;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -165,6 +168,31 @@ public class ConnectDB {
     	}
     	
  
+    }
+    
+    public String relation() throws IOException {
+    	
+    	String s="";
+    	String returns="";
+    	
+    	 Process process = Runtime.getRuntime().exec("python F:\\IT\\JAVA\\workspace\\AndroidWeb\\test.py");
+         
+         BufferedReader stdInput = new BufferedReader(new InputStreamReader(process.getInputStream(),"MS949"));
+         BufferedReader stdError = new BufferedReader(new InputStreamReader(process.getErrorStream(),"MS949"));
+         
+         while((s= stdInput.readLine()) != null) {
+        	 returns = returns.concat(s+"\n");
+        	 //System.out.println(s);
+         }
+         
+         
+         while((s = stdError.readLine()) != null) {
+            System.out.println(s);
+         }
+    	
+    	
+    	
+    	return returns;
     }
     
     

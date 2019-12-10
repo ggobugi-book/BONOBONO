@@ -47,6 +47,11 @@ public class RegisterActivity extends AsyncTask<String, Void, String> {
                 sendMsg = "userid=" + strings[1] + "&title=" + strings[2] + "&page=" + strings[3];
             }
 
+            else if(strings[0].equals("relation")){
+                url = new URL("http://"+ur+":8080/AndroidWeb/relation.jsp");
+                sendMsg = "title=" + strings[1] + "&page=" + strings[2];
+            }
+
 
 
             HttpURLConnection conn = (HttpURLConnection) url.openConnection();
