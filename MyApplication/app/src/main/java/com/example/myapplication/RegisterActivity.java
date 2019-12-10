@@ -12,6 +12,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
+import java.io.PrintWriter;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -47,18 +48,28 @@ public class RegisterActivity extends AsyncTask<String, Void, String> {
                 url = new URL("http://"+ur+":8080/AndroidWeb/updatePage.jsp");
                 sendMsg = "userid=" + strings[1] + "&title=" + strings[2] + "&page=" + strings[3];
             }
-
             else if(strings[0].equals("relation")){
                 url = new URL("http://"+ur+":8080/AndroidWeb/relation.jsp");
                 sendMsg = "title=" + strings[1] + "&page=" + strings[2];
             }
+            else if(strings[0].equals("updateMemo")){
+                url = new URL("http://"+ur+":8080/AndroidWeb/updateMemo.jsp");
+                sendMsg = "userid=" + strings[1] + "&title=" + strings[2] + "&memo=" + strings[3];
+            }
+            else if(strings[0].equals("getMemo")){
+                url = new URL("http://"+ur+":8080/AndroidWeb/getMemo.jsp");
+                sendMsg = "userid=" + strings[1] + "&title=" + strings[2];
+            }
+
 
 
 
             HttpURLConnection conn = (HttpURLConnection) url.openConnection();
-            conn.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");
+
+            conn.setRequestProperty("Content-Type", "application/x-www-form-urlencoded;charset=UTF-8");
             conn.setRequestMethod("POST");
-            OutputStreamWriter osw = new OutputStreamWriter(conn.getOutputStream());
+
+            PrintWriter osw = new PrintWriter(conn.getOutputStream());
 
             // 전송할 데이터. GET 방식으로 작성
 

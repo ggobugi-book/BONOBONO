@@ -84,7 +84,8 @@
                 android:background="@drawable/border"
                 android:hint="아이디"
                 android:paddingLeft="20dp"
-                android:textSize="13dp" />
+                android:textSize="13dp"
+                android:text="admin"/>
         </LinearLayout>
 
 
@@ -111,7 +112,8 @@
                 android:hint="비밀번호"
                 android:textSize="13dp"
                 android:inputType="textPassword"
-                android:background="@drawable/border"/>
+                android:background="@drawable/border"
+                android:text="1234"/>
         </LinearLayout>
 
         <LinearLayout
