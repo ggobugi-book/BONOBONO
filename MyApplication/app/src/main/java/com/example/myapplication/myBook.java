@@ -15,6 +15,9 @@ package com.example.myapplication;
 
         import android.widget.Button;
         import android.widget.EditText;
+        import android.widget.ImageView;
+
+        import com.bumptech.glide.Glide;
 
         import java.io.BufferedReader;
         import java.io.InputStreamReader;

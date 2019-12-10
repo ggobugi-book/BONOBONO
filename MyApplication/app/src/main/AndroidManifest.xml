@@ -12,8 +12,10 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".memoPopupActivity"
-            android:theme="@android:style/Theme.Dialog"/>
+        <activity android:name=".sandClock"></activity>
+        <activity
+            android:name=".memoPopupActivity"
+            android:theme="@android:style/Theme.Dialog" />
         <activity android:name=".cardView" />
         <activity android:name=".RelationTest" />
         <activity android:name=".joinActivity2" />

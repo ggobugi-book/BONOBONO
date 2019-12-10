@@ -73,6 +73,13 @@
                     android:layout_width="1dp"
                     android:textAlignment="center"/>
 
+                <!--<Button
+                    android:id="@+id/button4"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:text="2"
+                    android:background="#00ff0000"
+                    android:layout_width="1dp"/>-->
                 <Button
                     android:id="@+id/button4"
                     android:layout_weight="1"
@@ -80,6 +87,8 @@
                     android:text="2"
                     android:background="#00ff0000"
                     android:layout_width="1dp"/>
+
+
 
             </LinearLayout>
 
