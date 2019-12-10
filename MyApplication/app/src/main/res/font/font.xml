@@ -14,4 +14,24 @@
         android:fontStyle="italic"
         android:fontWeight="400"
         android:font="@font/photograph_signature" />
+
+    <font
+        android:fontStyle="italic"
+        android:fontWeight="400"
+        android:font="@font/nanumsquarebold" />
+
+    <font
+        android:fontStyle="italic"
+        android:fontWeight="400"
+        android:font="@font/nanumsquareregular" />
+
+    <font
+        android:fontStyle="italic"
+        android:fontWeight="400"
+        android:font="@font/nanumsquarelight" />
+
+    <font
+        android:fontStyle="italic"
+        android:fontWeight="400"
+        android:font="@font/nanumsquareextrabold" />
 </font-family>

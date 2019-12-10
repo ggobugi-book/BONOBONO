@@ -4,8 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/login_back"
-    tools:context=".loginActivity">
+    android:background="@drawable/loginback"
+    tools:context=".loginActivity"
+    android:id="@+id/parentt">
 
 
     <RelativeLayout
@@ -24,7 +25,6 @@
             >
 
             <ImageView
-
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="9"
@@ -34,8 +34,9 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="        로그인"
+                android:text="로그인"
                 android:textStyle="bold"
+                android:fontFamily="@font/nanumsquareextrabold"
                 android:textSize="17dp"
                 android:layout_weight="1"
                 >
@@ -56,22 +57,6 @@
             android:orientation="vertical"
 
             >
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:text="ggo g book"
-                android:fontFamily="@font/snowballs"
-                android:textSize="150px"
-                android:textAlignment="center"
-                android:textColor="#fbb800"
-                android:layout_marginBottom="5px"/>
-
-            <ImageView
-                android:id="@+id/imageView3"
-                android:layout_width="match_parent"
-                android:layout_height="125dp"
-
-                app:srcCompat="@drawable/logo1" />
 
 
         </LinearLayout>
@@ -79,40 +64,27 @@
         <LinearLayout
             android:id="@+id/idtextLayout"
             android:layout_below="@+id/imageLayout"
-
-
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_weight="20"
             android:layout_alignParentTop="true"
-
+            android:paddingLeft="40dp"
+            android:paddingRight="25dp"
             android:orientation="horizontal"
             android:layout_marginTop="300dp"
             android:layout_marginRight="20dp"
             >
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="2"
-
-                android:text="아이디"
-                android:textAlignment="center"
-
-                android:textAppearance="@style/TextAppearance.AppCompat.Headline"
-                android:textSize="15dp"
-                />
 
             <EditText
                 android:id="@+id/register_id"
-                android:layout_width="match_parent"
-                android:layout_height="40dp"
-
-                android:hint="  ID를 입력하세요"
-                android:text="admin"
-                android:textSize="16dp"
-
-
+                android:layout_width="259dp"
+                android:layout_height="45dp"
+                android:layout_gravity="center"
                 android:layout_weight="1"
-                android:background="@drawable/border"/>
+                android:background="@drawable/border"
+                android:hint="아이디"
+                android:paddingLeft="20dp"
+                android:textSize="13dp" />
         </LinearLayout>
 
 
@@ -121,34 +93,24 @@
             android:layout_below="@+id/idtextLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_weight="2"
             android:orientation="horizontal"
             android:layout_marginTop="20dp"
             android:layout_marginRight="20dp"
+            android:paddingLeft="40dp"
+            android:paddingRight="25dp"
             >
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="2"
-                android:text="비밀번호"
-                android:textAlignment="center"
-                android:textAppearance="@style/TextAppearance.AppCompat.Headline"
-                android:textSize="15dp" />
+
 
             <EditText
                 android:id="@+id/register_pw"
                 android:layout_width="match_parent"
-                android:layout_height="40dp"
+                android:layout_height="45dp"
                 android:layout_weight="1"
-
-                android:hint="  비밀번호를 입력하세요."
-
-                android:text="1234"
-                android:textSize="16dp"
-
+                android:paddingLeft="20dp"
+                android:hint="비밀번호"
+                android:textSize="13dp"
                 android:inputType="textPassword"
-
-
-
                 android:background="@drawable/border"/>
         </LinearLayout>
 
@@ -186,37 +148,32 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_above="@+id/joinButtonLayout"
-            android:layout_marginBottom="10dp"
-            android:orientation="horizontal"
-            >
+            android:layout_marginBottom="15dp"
+            android:paddingLeft="40dp"
+            android:paddingRight="40dp"
+            android:orientation="horizontal">
+
 
             <Button
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:background="#00ff0000"
-                />
 
-            <Button
                 android:id="@+id/register_btn"
-                android:layout_width="match_parent"
+                android:layout_width="286dp"
                 android:layout_height="wrap_content"
-
                 android:layout_weight="1"
-
-                android:background="@drawable/main_button"
+                android:background="@drawable/login_button"
+                android:fontFamily="@font/nanumsquareextrabold"
                 android:text="로그인"
                 android:textColor="@android:color/white"
-
-
                 android:textSize="15dp" />
 
-            <Button
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:background="#00ff0000"
-                />
+<!--            <ImageButton-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_gravity="center"-->
+<!--                android:paddingStart="10dp"-->
+<!--                android:src="@drawable/login_icon"-->
+<!--                android:background="@android:color/transparent" />-->
+
         </LinearLayout>
 
         <LinearLayout
@@ -224,34 +181,27 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
-            android:layout_marginBottom="20dp"
+            android:paddingBottom="30dp"
+            android:paddingLeft="40dp"
+            android:paddingRight="40dp"
+
             >
 
-            <Button
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:background="#00ff0000"
-                />
+
 
             <Button
                 android:id="@+id/register_btn1"
-                android:layout_width="match_parent"
+                android:layout_width="277dp"
                 android:layout_height="wrap_content"
-
                 android:layout_weight="1"
-                android:background="@drawable/main_button"
+                android:background="@drawable/register_button"
                 android:text="회원가입"
-                android:textColor="@android:color/white"
+                android:textColor="#009a9a"
+                android:fontFamily="@font/nanumsquareextrabold"
                 android:textSize="15dp"
+
                 />
 
-            <Button
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:background="#00ff0000"
-                />
 
         </LinearLayout>
 

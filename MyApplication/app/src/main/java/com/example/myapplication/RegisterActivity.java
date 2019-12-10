@@ -25,6 +25,7 @@ public class RegisterActivity extends AsyncTask<String, Void, String> {
         try {
             String ur = "70.12.225.119";//학원
 //            String ur = "192.168.0.5";//집
+             // String ur = "127.0.0.1"; //민지
 
 
             String str;
