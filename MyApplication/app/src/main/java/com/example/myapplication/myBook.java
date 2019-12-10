@@ -69,6 +69,7 @@ public class myBook extends AppCompatActivity {
                     Intent intent = new Intent(getApplicationContext(),RelationTest.class);
                     intent.putExtra("title",title);
                     intent.putExtra("page",pagenumber+"");
+
                     startActivity(intent);
                 }
             });
@@ -79,6 +80,7 @@ public class myBook extends AppCompatActivity {
 
                     intent.putExtra("title",title);
                     intent.putExtra("page",pagenumber+"");
+                    intent.putExtra("userid",userid);
 
                     startActivity(intent);
                 }
