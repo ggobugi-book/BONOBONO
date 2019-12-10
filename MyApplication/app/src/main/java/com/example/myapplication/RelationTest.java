@@ -27,9 +27,9 @@ public class RelationTest extends AppCompatActivity {
         try{
 
             RegisterActivity task = new RegisterActivity();
-            result = task.execute("relation",title, page).get();
+            //result = task.execute("relation",title, page).get();
 
-            Log.d("ggb :" ,result);
+            //Log.d("ggb :" ,result);
 
         }
         catch(Exception e){
@@ -45,7 +45,9 @@ public class RelationTest extends AppCompatActivity {
         //웹뷰 띄워주는 페이지
         WebView mWebView = (WebView)findViewById(R.id.webview);
         mWebView.getSettings().setJavaScriptEnabled(true);
-        mWebView.loadUrl("file:///android_asset/www/index.html?text="+result);
+        mWebView.loadUrl("file:///android_asset/www/index.html");
+        //mWebView.loadUrl("F:/Github/ggbook/MyApplication/app/src/main/assets/www/index.html");
+
 
 
     }

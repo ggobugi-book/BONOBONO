@@ -41,11 +41,9 @@ public class joinActivity extends AppCompatActivity {
                         Intent intent1 = new Intent(getApplicationContext(),PopupActivity.class);
                         intent1.putExtra("data", "존재하는 아이디입니다.");
                         startActivity(intent1);
-
-
                     }
                     else{
-                        Intent intent2 = new Intent(getApplicationContext(),joinActivity2.class);//아이디 없으면 조인 2로 이동
+                        Intent intent2= new Intent(getApplicationContext(),joinActivity2.class);//아이디 없으면 조인 2로 이동
                         intent2.putExtra("userid",id);
                         startActivity(intent2);
                     }
@@ -58,6 +56,7 @@ public class joinActivity extends AppCompatActivity {
     }
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+
         if(requestCode==1){
             if(resultCode==RESULT_OK){
                 //데이터 받기
@@ -65,5 +64,6 @@ public class joinActivity extends AppCompatActivity {
                 txtResult.setText(result);
             }
         }
+
     }
 }
