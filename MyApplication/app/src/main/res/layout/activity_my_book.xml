@@ -59,27 +59,20 @@
 
                 <Button
                     android:id="@+id/relation"
+                    android:layout_width="1dp"
+                    android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:layout_height="match_parent"
-                    android:text="@string/fa_align_justify"
                     android:background="#00ff0000"
-                    android:layout_width="1dp" />
+                    android:text="@string/fa_draw_polygon" />
 
                 <Button
                     android:id="@+id/memobtn"
                     android:layout_weight="1"
                     android:layout_height="wrap_content"
-                    android:text="1"
+                    android:text="@string/fa_edit"
                     android:background="#00ff0000"
                     android:layout_width="1dp"/>
 
-                <Button
-                    android:id="@+id/button4"
-                    android:layout_weight="1"
-                    android:layout_height="wrap_content"
-                    android:text="2"
-                    android:background="#00ff0000"
-                    android:layout_width="1dp"/>
 
             </LinearLayout>
 

@@ -47,8 +47,8 @@ public class MainActivity extends AppCompatActivity {
         handler.postDelayed(new Runnable(){
             @Override
             public void run() {
-                //Intent intent = new Intent (getApplicationContext(), loginActivity.class);
-                Intent intent = new Intent (getApplicationContext(), loginActivity.class);//로그인 액션으로 넘어감
+              // Intent intent = new Intent (getApplicationContext(), LoadingActivity.class);
+               Intent intent = new Intent (getApplicationContext(), loginActivity.class);//로그인 액션으로 넘어감
                 startActivity(intent); //다음화면으로 넘어감
                 finish();
             }

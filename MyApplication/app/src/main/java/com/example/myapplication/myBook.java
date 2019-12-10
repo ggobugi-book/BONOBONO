@@ -44,6 +44,7 @@ public class myBook extends AppCompatActivity {
 
         Button rbtn = (Button)findViewById(R.id.relation);
         Button memobtn = (Button)findViewById(R.id.memobtn);
+
         rbtn.setTypeface(fontAwsome);
         memobtn.setTypeface(fontAwsome);
 
