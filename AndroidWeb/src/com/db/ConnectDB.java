@@ -141,11 +141,7 @@ public class ConnectDB {
     
     public void updatePage(String userid,String title,String page) {
     	
-    	System.out.println("title : "+title);
-    	System.out.println("userid : "+userid);
-    	System.out.println("page : "+page);
-    	System.out.println("업데이트 완료");
-    	
+   	
     	try {
     		Class.forName("oracle.jdbc.driver.OracleDriver");
             conn = DriverManager.getConnection(jdbcUrl, userId, userPw);
@@ -190,6 +186,59 @@ public class ConnectDB {
             System.out.println(s);
          }
     	
+    	return returns;
+    }
+    public void updateMemo(String userid,String title,String memo) {
+    	
+    	try {
+    		Class.forName("oracle.jdbc.driver.OracleDriver");
+            conn = DriverManager.getConnection(jdbcUrl, userId, userPw);
+            
+            
+            String sql = "update memo set "+title+" = ? where userid = ? ";
+            pstmt = conn.prepareStatement(sql);
+            
+            pstmt.setString(1, memo);
+            pstmt.setString(2, userid);
+            
+            System.out.println("memo : "+memo);
+            
+            pstmt.executeUpdate();
+            
+            System.out.println("업데이트 완료");
+            
+    	}
+    	catch(Exception e) {
+    		System.out.println(e.getMessage());
+    	}
+    	
+    }
+    public String getMemo(String userid,String title) {
+    	
+    	try {
+    		Class.forName("oracle.jdbc.driver.OracleDriver");
+            conn = DriverManager.getConnection(jdbcUrl, userId, userPw);
+            
+            
+            String sql = "select "+title+" from memo where userid = ?";
+            pstmt = conn.prepareStatement(sql);
+            pstmt.setString(1, userid);
+            rs = pstmt.executeQuery();
+            
+            if (rs.next()) {
+                returns = rs.getString(1);//로그인 성공
+            } else {
+                returns = "2";//로그인 실패
+            }
+            
+            
+            
+            System.out.println("업데이트 완료");
+            
+    	}
+    	catch(Exception e) {
+    		System.out.println(e.getMessage());
+    	}
     	
     	
     	return returns;
