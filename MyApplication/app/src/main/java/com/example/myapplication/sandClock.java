@@ -14,8 +14,9 @@ public class sandClock extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sand_clock);
 
+
         ImageView sandclock = (ImageView)findViewById(R.id.sandclock);
-        Glide.with(this).load(R.raw.sandclock).into(sandclock);
+        Glide.with(this).load(R.raw.flower).into(sandclock);
 
 
     }

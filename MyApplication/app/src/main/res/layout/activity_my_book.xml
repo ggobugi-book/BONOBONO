@@ -24,13 +24,18 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="20"
-                android:background="#000000"
                 android:gravity="right">
 
                 <TextView
+                    android:id="@+id/bookname"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:text="책이름/저"
+                    android:background="#00FF0000"
+                    android:textColor="#000000"
+                    android:fontFamily="@font/nanumsquareregular"
+                    android:text="책이름"
+                    android:paddingTop="10dp"
+                    android:textAlignment="center"
                 />
 
             </LinearLayout>
@@ -40,13 +45,17 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="20"
-                android:background="#000000"
                 android:gravity="right">
 
                 <TextView
+                    android:id="@+id/pagenumber"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:text="쪽수"
+                    android:background="#00FF0000"
+                    android:fontFamily="@font/nanumsquareregular"
+                    android:textColor="#000000"
+                    android:paddingTop="10dp"
+                    android:textAlignment="center"
                 />
 
             </LinearLayout>
@@ -62,16 +71,18 @@
                     android:layout_width="1dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
+                    android:text="@string/fa_draw_polygon"
                     android:background="#00ff0000"
-                    android:text="@string/fa_draw_polygon" />
+                  />
 
                 <Button
                     android:id="@+id/memobtn"
+                    android:layout_width="1dp"
                     android:layout_weight="1"
                     android:layout_height="wrap_content"
                     android:text="@string/fa_edit"
                     android:background="#00ff0000"
-                    android:layout_width="1dp"/>
+                  />
 
 
             </LinearLayout>
