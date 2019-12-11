@@ -70,7 +70,7 @@ public class myBook extends AppCompatActivity {
 
             rbtn.setOnClickListener(new View.OnClickListener() {
                 public void onClick(View view) {
-                    Intent intent = new Intent(getApplicationContext(),RelationTest.class);
+                    Intent intent = new Intent(getApplicationContext(),sandClock.class);
                     intent.putExtra("title",title);
                     intent.putExtra("page",pagenumber+"");
 

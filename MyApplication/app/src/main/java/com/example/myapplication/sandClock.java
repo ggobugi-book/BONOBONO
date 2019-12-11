@@ -2,7 +2,9 @@ package com.example.myapplication;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
@@ -17,6 +19,37 @@ public class sandClock extends AppCompatActivity {
         ImageView sandclock = (ImageView)findViewById(R.id.sandclock);
         Glide.with(this).load(R.raw.sandclock).into(sandclock);
 
+        getRelation pp = new getRelation(getIntent());
+        Thread th = new Thread(pp);
 
+        th.start();
+
+
+
+
+    }
+
+    class getRelation implements Runnable{
+        Intent intent;
+
+        getRelation(Intent intent){
+            this.intent = intent;
+        };
+        public void run(){
+            try {
+                RegisterActivity task = new RegisterActivity();
+                String result = task.execute("relation","1", "1").get();
+                result = result.replace("\\","");
+                Log.d("ggb sandclock",result);
+
+                Intent intent = new Intent(getApplicationContext(),RelationTest.class);
+                intent.putExtra("result",result);
+
+                startActivity(intent);
+            }
+            catch (Exception e){
+                e.getMessage();
+            }
+        }
     }
 }

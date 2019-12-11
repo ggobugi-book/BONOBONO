@@ -1,6 +1,29 @@
 
 window.onload=function(){
 
+    var Request = function() {
+        this.getParameter = function(name) {
+            var rtnval = '';
+            var nowAddress = decodeURIComponent(location.href);
+            var parameters = (nowAddress.slice(nowAddress.indexOf('?') + 1,
+                    nowAddress.length)).split('&');
+            for (var i = 0; i < parameters.length; i++) {
+                var varName = parameters[i].split('=')[0];
+                if (varName.toUpperCase() == name.toUpperCase()) {
+                    rtnval = parameters[i].split('=')[1];
+                    break;
+                }
+            }
+            return rtnval;
+        }
+    }
+    var request = new Request();
+    var paramValue = request.getParameter('text');
+
+
+
+
+
 // Themes begin
 am4core.useTheme(am4themes_animated);
 // Themes end
@@ -19,10 +42,10 @@ networkSeries.dataFields.name = "named";
 networkSeries.dataFields.id = "named"; */
 
 networkSeries.nodes.template.label.text = "{name}"
-networkSeries.fontSize = 8;
+networkSeries.fontSize = 30;
 networkSeries.linkWithStre1ngth = 0;
 networkSeries.links.template.distance = 1;
-networkSeries.maxRadius = am4core.percent(18);
+networkSeries.maxRadius = am4core.percent(15);
 networkSeries.manyBodyStrength = -16;
 networkSeries.nodes.template.label.hideOversized = true;
 networkSeries.nodes.template.label.truncate = true;
@@ -89,232 +112,11 @@ networkSeries.nodes.template.events.on("up", function (event) {
 })*/
 
 
-networkSeries.data = [
-   {
-      "name":"여우",
-      "value":102,
-      "linkWith":[
 
-      ],
-      "children":[
-         {
-            "name":"David",
-            "value":14
-         },
-         {
-            "name":"Roger",
-            "value":1
-         },
-         {
-            "name":"Duncan",
-            "value":1
-         },
-         {
-            "name":"Rob Dohnen",
-            "value":2
-         },
-         {
-            "name":"Ryan",
-            "value":5
-         },
-         {
-            "name":"Malcom",
-            "value":1
-         },
-         {
-            "name":"Robert",
-            "value":1
-         },
-         {
-            "name":"Sergei",
-            "value":1
-         },
-         {
-            "name":"Vince",
-            "value":2
-         },
-         {
-            "name":"Jason",
-            "value":1
-         },
-         {
-            "name":"Rick",
-            "value":2
-         },
-         {
-            "name":"Gary",
-            "value":7
-         },
-         {
-            "name":"Jake",
-            "value":2
-         },
-         {
-            "name":"Eric",
-            "value":3
-         },
-         {
-            "name":"Mike",
-            "value":18
-         }
-      ]
-   },
-   {
-      "name":"왕자",
-      "value":204,
-      "link":[
+networkSeries.data = JSON.parse(paramValue);
 
-      ],
-      "children":[
-         {
-            "name":"Paul the wine guy",
-            "value":1
-         },
-         {
-            "name":"Mr Geller",
-            "value":8
-         },
-         {
-            "name":"Mrs Geller",
-            "value":14
-         },
-         {
-            "name":"Aunt Lilian",
-            "value":2
-         },
-         {
-            "name":"Nana",
-            "value":1
-         },
-         {
-            "name":"Young Ethan",
-            "value":5
-         },
-         {
-            "name":"Ben",
-            "value":9
-         },
-         {
-            "name":"Fun Bobby",
-            "value":3
-         },
-         {
-            "name":"Richard",
-            "value":16
-         },
-         {
-            "name":"Mrs Green",
-            "value":4
-         },
-         {
-            "name":"Paolo2",
-            "value":1
-         },
-         {
-            "name":"Pete",
-            "value":10
-         },
-         {
-            "name":"Chip",
-            "value":1
-         },
-         {
-            "name":"Timothy (Burke)",
-            "value":1
-         },
-         {
-            "name":"Emily",
-            "value":17
-         },
-         {
-            "name":"Dr. Roger",
-            "value":3
-         }
-      ]
-   },
-   {
-   "name" : "왕자, 여우",
-   "value" : 50,
-   "linkWith" : ["왕자", "여우"]
-   },
-    {
-      "name":"바오밥나무",
-      "value":95,
-      "linkWith":[
 
-      ],
-      "children":[
-         {
-            "name":"David",
-            "value":14
-         },
-         {
-            "name":"Roger",
-            "value":1
-         },
-         {
-            "name":"Duncan",
-            "value":1
-         },
-         {
-            "name":"Rob Dohnen",
-            "value":2
-         },
-         {
-            "name":"Ryan",
-            "value":5
-         },
-         {
-            "name":"Malcom",
-            "value":1
-         },
-         {
-            "name":"Robert",
-            "value":1
-         },
-         {
-            "name":"Sergei",
-            "value":1
-         },
-         {
-            "name":"Vince",
-            "value":2
-         },
-         {
-            "name":"Jason",
-            "value":1
-         },
-         {
-            "name":"Rick",
-            "value":2
-         },
-         {
-            "name":"Gary",
-            "value":7
-         },
-         {
-            "name":"Jake",
-            "value":2
-         },
-         {
-            "name":"Eric",
-            "value":3
-         },
-         {
-            "name":"Mike",
-            "value":18
-         }
-      ]
-   },  {
-   "name" : "왕자, 바오밥나무",
-   "value" : 50,
-   "linkWith" : ["왕자", "바오밥나무"]
-   },  {
-   "name" : "바오밥나무, 여우",
-   "value" : 50,
-   "linkWith" : ["바오밥나무", "여우"]
-   },
-];
+
 
 
 

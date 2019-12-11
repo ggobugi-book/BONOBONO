@@ -7,7 +7,13 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
 import android.webkit.JavascriptInterface;
+import android.webkit.WebSettings;
 import android.webkit.WebView;
+
+import org.json.JSONArray;
+import org.json.JSONObject;
+
+import java.net.URLEncoder;
 
 public class RelationTest extends AppCompatActivity {
 
@@ -24,31 +30,14 @@ public class RelationTest extends AppCompatActivity {
         String page = intent.getStringExtra("page");
         String result="";
 
-        try{
-
-            RegisterActivity task = new RegisterActivity();
-            //result = task.execute("relation",title, page).get();
-
-            //Log.d("ggb :" ,result);
-
-        }
-        catch(Exception e){
-
-        }
-
-
-
-
-
-
-
         //웹뷰 띄워주는 페이지
         WebView mWebView = (WebView)findViewById(R.id.webview);
-        mWebView.getSettings().setJavaScriptEnabled(true);
-        mWebView.loadUrl("file:///android_asset/www/index.html");
-        //mWebView.loadUrl("F:/Github/ggbook/MyApplication/app/src/main/assets/www/index.html");
 
+        WebSettings set = mWebView.getSettings();
+        set.setJavaScriptEnabled(true);
+        set.setDefaultTextEncodingName("utf-8");
 
+        mWebView.loadUrl("file:///android_asset/www/index.html?text="+getIntent().getStringExtra("result"));
 
     }
 
