@@ -38,7 +38,7 @@ public class myBook extends AppCompatActivity {
     Thread t = new Thread(au);
 
 
-    TextView page = (TextView)findViewById(R.id.pagenumber);
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,6 +52,7 @@ public class myBook extends AppCompatActivity {
 
         Button rbtn = (Button)findViewById(R.id.relation);
         Button memobtn = (Button)findViewById(R.id.memobtn);
+        final TextView page = (TextView)findViewById(R.id.pagenumber);
 
         rbtn.setTypeface(fontAwsome);
         memobtn.setTypeface(fontAwsome);
@@ -65,6 +66,8 @@ public class myBook extends AppCompatActivity {
 
             final String allText = readFromAssets(intent.getExtras().getString("filename")+".txt");
             pagenumber = Integer.parseInt(intent.getExtras().getString("page"));
+
+            page.setText(pagenumber+"");
 
             Log.d("ggb page",pagenumber+"");
 
@@ -129,7 +132,7 @@ public class myBook extends AppCompatActivity {
 
                             pagenumber--;
 
-                            page.setText(pagenumber);
+                            page.setText(pagenumber+"");
                         }
 
                         else if(event.getX()>standard){
@@ -141,7 +144,7 @@ public class myBook extends AppCompatActivity {
                                 book.setText(currentText);
                                 pagenumber++;
 
-                                page.setText(pagenumber);
+                                page.setText(pagenumber+"");
                             }
                             catch(Exception e){
                                 e.printStackTrace();
