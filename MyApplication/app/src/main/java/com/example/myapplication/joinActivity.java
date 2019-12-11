@@ -13,7 +13,9 @@ import android.widget.TextView;
 public class joinActivity extends AppCompatActivity {
 
     Button check;
+    Button rbtn;
     EditText userid;
+    EditText userpwd;
     TextView txtResult;
 
 
@@ -22,9 +24,11 @@ public class joinActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_join);
 
+
+        rbtn = (Button)findViewById(R.id.register_btn);
         check = (Button)findViewById(R.id.check);
         userid = (EditText) findViewById(R.id.userid);
-
+        userpwd = (EditText) findViewById(R.id.userpwd);
 
 
         check.setOnClickListener(new View.OnClickListener(){
@@ -43,8 +47,8 @@ public class joinActivity extends AppCompatActivity {
                         startActivity(intent1);
                     }
                     else{
-                        Intent intent2= new Intent(getApplicationContext(),joinActivity2.class);//아이디 없으면 조인 2로 이동
-                        intent2.putExtra("userid",id);
+                        Intent intent2= new Intent(getApplicationContext(),PopupActivity.class);//아이디 없으면 조인 2로 이동
+                        intent2.putExtra("data", "사용할 수 있는 아이디입니다.");
                         startActivity(intent2);
                     }
 
@@ -52,6 +56,25 @@ public class joinActivity extends AppCompatActivity {
                     Log.i("DBtest", "…..ERROR…..!");
                 }
             }
+        });
+
+        rbtn.setOnClickListener(new View.OnClickListener(){
+            public void onClick(View view){
+                try{
+                    String id = userid.getText().toString();
+                    String pwd = userpwd.getText().toString();
+                    RegisterActivity task = new RegisterActivity();
+
+                    Intent intent = new Intent(getApplicationContext(),cardView.class);//아이디 없으면 조인 2로 이
+                    intent.putExtra("id",id);
+                    task.execute("join", id, pwd).get();
+                    startActivity(intent);
+
+                }catch (Exception e){
+                    Log.i("DBtest", "ERRRRRRROR");
+                }
+            }
+
         });
     }
     @Override

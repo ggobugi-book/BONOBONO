@@ -16,14 +16,19 @@ package com.example.myapplication;
         import android.widget.Button;
         import android.widget.EditText;
         import android.widget.ImageView;
+        import android.widget.TextView;
 
         import com.bumptech.glide.Glide;
+
+        import org.w3c.dom.Text;
 
         import java.io.BufferedReader;
         import java.io.InputStreamReader;
 
 
 public class myBook extends AppCompatActivity {
+
+
 
     int pagenumber;
     String userid;
@@ -33,7 +38,7 @@ public class myBook extends AppCompatActivity {
     Thread t = new Thread(au);
 
 
-
+    TextView page = (TextView)findViewById(R.id.pagenumber);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,15 +56,11 @@ public class myBook extends AppCompatActivity {
         rbtn.setTypeface(fontAwsome);
         memobtn.setTypeface(fontAwsome);
 
-
         t.start();
 
 
 
         try{
-
-
-
             final EditText book = (EditText)findViewById(R.id.book);
 
             final String allText = readFromAssets(intent.getExtras().getString("filename")+".txt");
@@ -127,6 +128,8 @@ public class myBook extends AppCompatActivity {
                             book.setText(currentText);
 
                             pagenumber--;
+
+                            page.setText(pagenumber);
                         }
 
                         else if(event.getX()>standard){
@@ -137,6 +140,8 @@ public class myBook extends AppCompatActivity {
 
                                 book.setText(currentText);
                                 pagenumber++;
+
+                                page.setText(pagenumber);
                             }
                             catch(Exception e){
                                 e.printStackTrace();
