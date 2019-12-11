@@ -9,6 +9,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.HashMap;
 
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
@@ -166,27 +168,149 @@ public class ConnectDB {
  
     }
     
-    public String relation() throws IOException {
+    public JSONArray relation(String title,String page) throws IOException {
     	
     	String s="";
-    	String returns="";
     	
-    	 Process process = Runtime.getRuntime().exec("python F:\\IT\\JAVA\\workspace\\AndroidWeb\\test.py");
+    	
+    	 Process process = Runtime.getRuntime().exec("python F:\\IT\\JAVA\\workspace\\AndroidWeb\\test.py TheLittlePrince 50");
          
          BufferedReader stdInput = new BufferedReader(new InputStreamReader(process.getInputStream(),"MS949"));
          BufferedReader stdError = new BufferedReader(new InputStreamReader(process.getErrorStream(),"MS949"));
          
+         ArrayList<String> arr = new ArrayList<String>();
+         
          while((s= stdInput.readLine()) != null) {
-        	 returns = returns.concat(s+"\n");
-        	 //System.out.println(s);
+//        	 System.out.println(s);
+        	 arr.add(s);
+         }
+         System.out.println(arr.size());
+         
+         
+         //########################################################################################
+         String test = arr.get(0);
+         test = replaces(test);
+         
+         String[] parentArr = test.split(",");
+         
+         String weightStr = replaces(arr.get(1));
+         String[] weightArr = weightStr.split(","); 
+         
+         
+         HashMap<String, Integer> hm = new HashMap<String, Integer>();
+         for(String k : weightArr) {
+        	 System.out.println(k);
+        	 String[] pp = k.split(":");
+        	 System.out.println("pp size : "+pp.length);
+        	 hm.put(pp[0], Integer.parseInt(pp[1]));
          }
          
          
-         while((s = stdError.readLine()) != null) {
-            System.out.println(s);
+         
+         for(String key : hm.keySet()) {
+        	 System.out.println("key : "+key+" value : "+hm.get(key));
          }
+         
+         
+         
+         
+         
+		/*
+		 * String relation1 = arr.get(1); relation1 = replaces(relation1); String[]
+		 * relation1arr = relation1.split(",");
+		 * 
+		 * HashMap<String, String> hm = new HashMap<String, String>(); for(int i =
+		 * 0;i<relation1arr.length;i++) { hm.put(relation1arr[i], relation1arr[i+1]);
+		 * i++; }
+		 * 
+		 * for(String key:hm.keySet()) {
+		 * System.out.println("key : "+key+"  value : "+hm.get(key)); }
+		 */
+         JSONArray Allarr = new JSONArray();
+         
+         
+         JSONObject json ;
+         
+         for(int i = 2;i<parentArr.length+1;i++) {
+        	 
+        	 json = new JSONObject();
+        	 
+        	 
+        	 json.put("name", parentArr[i-1]);
+        	 json.put("value", 150-hm.get(parentArr[i-2])*10);
+        	 json.put("text", parentArr[i-1]);
+        	 
+        	 
+        	 String relation1 = arr.get(i);
+        	 relation1 = replaces(relation1);
+        	 String[] relation1arr = relation1.split(",");
+        	 
+        	 
+        	 
+        	 
+        	 JSONArray jsonarr = new JSONArray();
+             for(int j = 0;j<relation1arr.length;j++) {
+            	 JSONObject ob = new JSONObject();
+            	 ob.put("name", relation1arr[j]);
+            	 ob.put("value", 1);
+
+            	 jsonarr.add(ob);
+            	 j++;
+            	 
+             }
+             json.put("children", jsonarr);
+             
+             Allarr.add(json);
+         }
+         
+         
+         
+         
+         
+         
+         
+         
+         
+         for(int i = parentArr.length+2; i<arr.size(); i++) {
+        	 
+        	 JSONObject obj = new JSONObject();
+        	 
+        	 
+        	 
+        	 String WordRelation = replaces(arr.get(i));//with name에 들어갈내용 그대로 뽑아냄
+        	 String[] WordRelationarr = WordRelation.split(",");
+        	 
+        	 obj.put("name", WordRelation);
+        	 obj.put("value",1);
+        	 
+        	 
+        	 
+        	 String WordRelationNum = replaces(arr.get(i+1));
+        	 String[] WordRelationNumArr = WordRelationNum.split(",");
+        	 
+        	 String str ="";
+        	 
+        	 
+        	 
+        	 JSONArray pp  = new JSONArray();
+        	 for(int j=0;j<WordRelationNumArr.length;j++) {
+        		 pp.add(WordRelationNumArr[j]);
+        		 j++;
+        	 }
+        	 obj.put("text", pp);
+        	 
+        	 JSONArray pp2 = new JSONArray();
+        	 for(String k : WordRelationarr) {
+        		 pp2.add(k);
+        	 }
+        	 obj.put("linkWith", pp2);       	 
+        	 
+        	 i++;
+        	 Allarr.add(obj);
+         }
+         
     	
-    	return returns;
+    	return Allarr;
     }
     public void updateMemo(String userid,String title,String memo) {
     	
@@ -242,6 +366,23 @@ public class ConnectDB {
     	
     	
     	return returns;
+    }
+    
+    public String replaces(String test) {
+
+    	test = test.replace("[", "");
+    	test = test.replace("]", "");
+    	
+    	test = test.replace(")", "");
+    	test = test.replace("(", "");
+    	
+    	test = test.replace("{", "");
+    	test = test.replace("}", "");
+    	
+        test = test.replace("'", "");
+        test = test.replace(" ", "");
+        
+        return test;
     }
     
     

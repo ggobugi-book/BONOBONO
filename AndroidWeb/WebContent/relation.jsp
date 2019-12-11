@@ -1,3 +1,4 @@
+<%@page import="org.json.simple.JSONArray"%>
 <%@page import="com.db.ConnectDB"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
@@ -15,7 +16,7 @@
 	String title = request.getParameter("title");
 	String page1 = request.getParameter("page");
 	
-   String returns = connectDB.relation();
+	JSONArray returns = connectDB.relation(title,page1);
 
    
    System.out.println(returns);

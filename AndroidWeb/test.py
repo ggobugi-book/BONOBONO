@@ -1,6 +1,8 @@
+#!/usr/bin/env python
+# coding: utf-8
 
 import pandas
-from konlpy.tag import Okt
+from konlpy.tag import Komoran
 from gensim.models import word2vec
 from nltk.corpus import stopwords
 from nltk.tokenize import word_tokenize
@@ -8,147 +10,121 @@ from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.feature_extraction.text import CountVectorizer
 import string
 import re
+import sys
+
+
+# java에서 넘어오는 argument 값들
+# print(sys.argv[1]) # book_title
+# print(sys.argv[2]) # page_num
+# 1page -> 350
+
+
+book_title = 'F:/IT/JAVA/workspace/AndroidWeb/' + sys.argv[1] + '.txt'
 
 
 
-# In[3]:
 
+#파일 읽어오기
+file = open(book_title,'r',encoding='utf-8')
+line_raw = file.read()
+page_num = int(sys.argv[2])*350
+line = line_raw[:page_num]
 
-
-#���� �о����
-file = open('F:/IT/JAVA/workspace/AndroidWeb/mujung.txt','r',encoding='UTF-8')
-line = file.read()
-
-#��(chapter)���� ����
+#장(chapter)마다 나눔
 sentences = re.split('(?<=[2-9]\n)|(?<=[0-9][0-9]\n)|(?<=[0-9][0-9][0-9]\n)', line)
 
-#Komoran ���¼� �м��� ���� ��ó��
+
+#Komoran 형태소 분석을 위한 전처리
 sent=[]
 for stuff in sentences:
 #         stuff = stuff.replace("'","").replace("?","").replace(".","").replace("'","").replace('"'
 # ,"").replace("!","").replace("-","").replace('"',"").replace("\n","")
 #         stuff = re.sub("\n","", line).strip()
+        stuff= "\n".join([s for s in stuff.split("\n") if s])
         sent.append(stuff)
+
+
+# In[3]:
+
+
+# print(sent)
 
 
 # In[4]:
 
 
-# twitter = Komoran(userdic='./user_dic.txt')
-twitter = Okt()
+komoran = Komoran(userdic='F:/IT/JAVA/workspace/AndroidWeb/user_dic.txt')
 
-
-# In[5]:
-
-
-#���¼Һм�
+#형태소분석
 sentences_tag = []
 for sentence in sent:
-    morph = twitter.pos(sentence)
+    morph = komoran.pos(sentence)
     sentences_tag.append(morph)
 
-
-# In[6]:
-
-
-#��� ����
+#명사 추출
+noun_adj_list=[]
 noun_adj=[]
 
-#komoran
-# for sentence1 in sentences_tag:
-#     for word, tag in sentence1:
-#         if tag in ['NNP']: 
-#             noun_adj.append(word)
-
-#twitter
 for sentence1 in sentences_tag:
+    noun_adj=[]
     for word, tag in sentence1:
         if len(word)>1:
-            if tag in ['Noun']: #komoran
+            if tag in ['NNP']: #komoran
+                word = word.replace(" ","")
                 noun_adj.append(word)
+                
+    noun_adj_list.append(noun_adj)
 
+#만약 chapter가 하나일때 TF-IDF 분석오류남으로 조건처리
 
-# In[7]:
-
-
-# print(noun_adj)
-
-
-# In[8]:
+if len(sentences) < 2 :
+    noun_adj_list = noun_adj
 
 
 ############# TF-IDF###################
 
+# 데이터 전처리
+ad_text=[]
+b=''
+for i in noun_adj_list:
+    a=" ".join(i).split(",")
+    b=''.join(a)
+    ad_text.append(b)
 
-# In[9]:
-
-
-# In[10]:
-
-
-vector = CountVectorizer()
-# print(vector.fit_transform(noun_adj).toarray()) # ���۽��κ��� �� �ܾ��� �� ���� ����Ѵ�.
-# print(vector.vocabulary_) # �� �ܾ��� �ε����� ��� �ο��Ǿ������� �����ش�.
-
-
-# In[11]:
-
-
-tfidfv = TfidfVectorizer().fit(noun_adj)
-# print(tfidfv.transform(noun_adj).toarray())
-# print(tfidfv.vocabulary_)
+# TF
+# vector = CountVectorizer()
+# print(vector.fit_transform(ad_text).toarray()) # 코퍼스로부터 각 단어의 빈도 수를 기록한다.
+# print(vector.vocabulary_) # 각 단어의 인덱스가 어떻게 부여되었는지를 보여준다.
 
 
-# In[12]:
-
-
-# TF-IDF ����
-tfidf = TfidfVectorizer(max_features = 5, max_df=0.95, min_df=0) #(max_features = 5) <- ���� 5���� ����
+# TF-IDF 설정
+tfidf = TfidfVectorizer(max_features = 7, max_df=0.95, min_df=0) #(max_features = 5) <- 상위 5개만 추출
 
 #generate tf-idf term-document matrix
-A_tfidf_sp = tfidf.fit_transform(noun_adj)
-
-
-# In[13]:
-
+A_tfidf_sp = tfidf.fit_transform(ad_text)
 
 tfidf_dict = tfidf.get_feature_names()
 print(tfidf_dict)
 
-
-# In[14]:
+# 값이 적을수록 다른 문서에서 자주 언급
+print(tfidf.vocabulary_)
 
 
 #############Word2Vec######################
 
-
-# In[15]:
-
-
-sents = [doc.split(" ") for doc in noun_adj] #Word2Vec �� ���� ��ó��
+# Word2Vec 을 위한 전처리
+sents = [doc.split(" ") for doc in ad_text]
 
 
-# In[16]:
-
-
-
-model = word2vec.Word2Vec(sents, size=200,window=10,hs=1,min_count=2,sg=1)
+model = word2vec.Word2Vec(sents, size=200,window=100,hs=1,min_count=2,sg=1)
 
 # print(list(model.wv.vocab.keys()))
 # print("vocab length : %d"%len(model.wv.vocab))
 
-# print(model.wv.most_similar("����"))
-
-
-# In[17]:
-
-
-# In[18]:
-
 
 wv = model.wv #Word2Vec model
-# del(model)
-# ���޹��� sigwords �� model�� ���Ե� �ܾ �켱���� ������ �߷���
+del(model)
+# 전달받은 sigwords 중 model에 포함된 단어를 우선순위 순서로 추려냄
 sigvocs = []
 missvocs = []
 hit = 0
@@ -164,13 +140,13 @@ for worddic in tfidf_dict:
     except:
         missvocs.append(word)
         miss += 1
-# ������. ���� ����.
-print("missed: %d"  % miss)
-for voc in missvocs:
-    print(voc)
+# 디버깅용. 추후 삭제.
+# print("missed: %d"  % miss)
+# for voc in missvocs:
+#     print(voc)2
 
 
-# ���Ͻ� ��Ʈ������ ������������ ���·� ����
+# 디스턴스 매트릭스를 데이터프레임 형태로 만듦
 distDF =  pandas.DataFrame(columns = sigvocs , index = sigvocs)
 for i in sigvocs:
     dists = []
@@ -178,16 +154,27 @@ for i in sigvocs:
         dist = round(wv.distance(i, j), 6)
         dists.append(0 if dist < 1.0e-2 else dist)
     distDF[i] = dists
-print(distDF)
-
-
-# In[19]:
-
-
 # print(distDF)
 
 
-# In[142]:
 
-result_text=wv.most_similar(positive=['형식','영채'])
-print(result_text)
+# Word2Vec 검출된 단어와 연관 단어 추출
+
+for i in sigvocs:
+    print(wv.most_similar(positive=i, negative=[]))
+    
+
+
+# 단어 조합
+from itertools import combinations
+test = list(combinations(sigvocs, 2))
+
+
+for i in test:
+    i = str(i)
+    i = i.replace("(","").replace(")","").replace("'","").replace(" ","").split(",")
+    print((i))
+    print(wv.most_similar(positive=i, negative=[]))
+
+
+############################################
