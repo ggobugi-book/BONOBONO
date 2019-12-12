@@ -70,19 +70,41 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.CustomView
         final String title = mList.get(position).getTitle();
 
         try{
+
+            //책 제목,페이지 받아오기
             RegisterActivity task = new RegisterActivity();//서버관련해여 객체 생성
             String result = task.execute("getBookPage",title).get();//flag:getBookList를 사용하여
 
+            final String[] titlepage = result.split(",");
 
+            Log.d("ggb title,page",result);
 
             //프로그래스바 값 받아오고 넣기 시작
-            float fa= hm.get(title)/Float.parseFloat(result);
+            float fa= hm.get(title)/Float.parseFloat(titlepage[1]);
             int k = Math.round(fa*100);
 
             viewholder.pagetext.setText(k+"%");
             viewholder.progress.setProgress(k);
             //프로그래스바 값 받아오고 넣기 끝
 
+
+
+            viewholder.image.setOnClickListener(new View.OnClickListener() {
+                public void onClick(View view) {
+
+                    Intent intent = new Intent(context.getApplicationContext(),myBook.class);
+
+                    intent.putExtra("title",titlepage[0]);
+                    intent.putExtra("allpage",(Integer.parseInt(titlepage[1])-2)+"");
+                    intent.putExtra("filename",title);
+                    intent.putExtra("page",hm.get(title).toString());
+                    intent.putExtra("userid",id);
+
+
+                    context.startActivity(intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK));//새로운 intent를 실행하기위해서 플래그를 붙여줘야한다.
+
+                }
+            });
         }
         catch(Exception e){
 
@@ -95,20 +117,7 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.CustomView
 
 
 
-        viewholder.image.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View view) {
 
-                Intent intent = new Intent(context.getApplicationContext(),myBook.class);
-
-                intent.putExtra("filename",title);
-                intent.putExtra("page",hm.get(title).toString());
-                intent.putExtra("userid",id);
-
-
-                context.startActivity(intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK));//새로운 intent를 실행하기위해서 플래그를 붙여줘야한다.
-
-            }
-        });
     }
 
     @Override

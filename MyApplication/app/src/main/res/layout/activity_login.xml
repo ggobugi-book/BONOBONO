@@ -85,7 +85,12 @@
                 android:hint="아이디"
                 android:paddingLeft="20dp"
                 android:textSize="13dp"
-                android:text="admin"/>
+                android:text="admin"
+
+                android:ems="10"
+                android:inputType="textPersonName"
+
+                />
         </LinearLayout>
 
 

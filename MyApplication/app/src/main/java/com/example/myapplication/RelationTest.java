@@ -38,6 +38,30 @@ public class RelationTest extends AppCompatActivity {
 
     }
 
+    @Override
+    public void onBackPressed() {
+
+
+//        Intent intent = getIntent();
+//
+//        String filename = intent.getStringExtra("filename");
+//        int page = Integer.parseInt(intent.getStringExtra("page"))+1;
+//        String title = intent.getStringExtra("title");
+//        String allpage = intent.getStringExtra("allpage");
+//        String userid = intent.getStringExtra("userid");
+//
+//        intent = new Intent(getApplicationContext(),myBook.class);
+//
+//        intent.putExtra("filename",filename);
+//        intent.putExtra("page",page);
+//        intent.putExtra("title",title);
+//        intent.putExtra("allpage",allpage);
+//        intent.putExtra("userid",userid);
+//
+//        startActivity(intent);
+        super.onBackPressed();
+    }
+
 
 
 
