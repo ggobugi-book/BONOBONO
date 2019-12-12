@@ -23,8 +23,11 @@ public class ConnectDB {
     }
     public ConnectDB() {  }
 
+  //String ip = "192.168.62.1"; // 원호 ip
+  String ip = "70.12.225.119"; // 민지 ip
+  
     // oracle 계정
-    String jdbcUrl = "jdbc:oracle:thin:@192.168.62.1:1521:orcl";
+    String jdbcUrl = "jdbc:oracle:thin:@"+ip+":1521:orcl";
     String userId = "ggbook";
     String userPw = "1234";
 
