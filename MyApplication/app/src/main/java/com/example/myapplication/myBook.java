@@ -29,7 +29,7 @@ package com.example.myapplication;
 public class myBook extends AppCompatActivity {
 
 
-
+    String bookname;
     int pagenumber;
     String userid;
     String title;
@@ -45,7 +45,7 @@ public class myBook extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_my_book);
 
-        Typeface fontAwsome = Typeface.createFromAsset(getAssets(), "fontawesome-webfont.ttf");
+        Typeface fontAwesome = Typeface.createFromAsset(getAssets(), "fontawesome-webfont.ttf");
         Intent intent = getIntent();
         title = intent.getExtras().getString("filename");
         userid = intent.getExtras().getString("userid");
@@ -53,13 +53,12 @@ public class myBook extends AppCompatActivity {
         Button rbtn = (Button)findViewById(R.id.relation);
         Button memobtn = (Button)findViewById(R.id.memobtn);
         final TextView page = (TextView)findViewById(R.id.pagenumber);
+        final TextView bookname = (TextView)findViewById(R.id.bookname);
 
-        rbtn.setTypeface(fontAwsome);
-        memobtn.setTypeface(fontAwsome);
+        rbtn.setTypeface(fontAwesome);
+        memobtn.setTypeface(fontAwesome);
 
         t.start();
-
-
 
         try{
             final EditText book = (EditText)findViewById(R.id.book);
