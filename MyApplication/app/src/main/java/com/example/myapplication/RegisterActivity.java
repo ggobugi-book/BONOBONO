@@ -60,6 +60,10 @@ public class RegisterActivity extends AsyncTask<String, Void, String> {
                 url = new URL("http://"+ur+":8080/AndroidWeb/getMemo.jsp");
                 sendMsg = "userid=" + strings[1] + "&title=" + strings[2];
             }
+            else if(strings[0].equals("getBookPage")){
+                url = new URL("http://"+ur+":8080/AndroidWeb/getBookPage.jsp");
+                sendMsg = "title=" + strings[1];
+            }
 
 
 

@@ -46,6 +46,7 @@ public class cardView extends AppCompatActivity {
 
         try{
 
+
             RegisterActivity task = new RegisterActivity();//서버관련해여 객체 생성
 
             //json 받아오기 시작

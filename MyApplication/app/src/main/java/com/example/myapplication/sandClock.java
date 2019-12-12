@@ -10,6 +10,8 @@ import android.widget.ImageView;
 import com.bumptech.glide.Glide;
 
 public class sandClock extends AppCompatActivity {
+    getRelation pp = new getRelation(getIntent());
+    Thread th = new Thread(pp);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -17,11 +19,11 @@ public class sandClock extends AppCompatActivity {
         setContentView(R.layout.activity_sand_clock);
 
 
-        ImageView sandclock = (ImageView)findViewById(R.id.sandclock);
-        Glide.with(this).load(R.raw.flower).into(sandclock);
 
-        getRelation pp = new getRelation(getIntent());
-        Thread th = new Thread(pp);
+        ImageView sandclock = (ImageView)findViewById(R.id.sandclock);
+        Glide.with(this).load(R.raw.book1_edit).into(sandclock);
+
+
 
         th.start();
 
@@ -38,19 +40,33 @@ public class sandClock extends AppCompatActivity {
         };
         public void run(){
             try {
+
+
+
+                String filename = intent.getStringExtra("filename");
+                int page = Integer.parseInt(intent.getStringExtra("page"))+1;
+
+
+
                 RegisterActivity task = new RegisterActivity();
-                String result = task.execute("relation","1", "1").get();
+                String result = task.execute("relation",filename, page+"").get();
                 result = result.replace("\\","");
-                Log.d("ggb sandclock",result);
 
-                Intent intent = new Intent(getApplicationContext(),RelationTest.class);
-                intent.putExtra("result",result);
-
+                if(!Thread.currentThread().isInterrupted()){
+                    intent = new Intent(getApplicationContext(),RelationTest.class);
+                    intent.putExtra("result",result);
+                }
                 startActivity(intent);
             }
             catch (Exception e){
                 e.getMessage();
             }
         }
+    }
+
+    @Override
+    public void onBackPressed() {
+        th.interrupt();
+        super.onBackPressed();
     }
 }

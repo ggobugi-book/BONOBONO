@@ -29,7 +29,7 @@ package com.example.myapplication;
 public class myBook extends AppCompatActivity {
 
 
-    String bookname;
+
     int pagenumber;
     String userid;
     String title;
@@ -45,28 +45,51 @@ public class myBook extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_my_book);
 
-        Typeface fontAwesome = Typeface.createFromAsset(getAssets(), "fontawesome-webfont.ttf");
+
+
+
+        final TextView page = (TextView)findViewById(R.id.pagenumber);
+        final TextView bookname = (TextView)findViewById(R.id.bookname);
+
+
+
+
+        Typeface fontAwsome = Typeface.createFromAsset(getAssets(), "fontawesome-webfont.ttf");
         Intent intent = getIntent();
         title = intent.getExtras().getString("filename");
         userid = intent.getExtras().getString("userid");
 
         Button rbtn = (Button)findViewById(R.id.relation);
         Button memobtn = (Button)findViewById(R.id.memobtn);
-        final TextView page = (TextView)findViewById(R.id.pagenumber);
-        final TextView bookname = (TextView)findViewById(R.id.bookname);
 
-        rbtn.setTypeface(fontAwesome);
-        memobtn.setTypeface(fontAwesome);
 
+        rbtn.setTypeface(fontAwsome);
+        memobtn.setTypeface(fontAwsome);
+
+        t.setDaemon(true);
         t.start();
+
+
 
         try{
             final EditText book = (EditText)findViewById(R.id.book);
 
             final String allText = readFromAssets(intent.getExtras().getString("filename")+".txt");
+
             pagenumber = Integer.parseInt(intent.getExtras().getString("page"));
 
-            page.setText(pagenumber+"");
+            Display display = getWindowManager().getDefaultDisplay();
+            Point size = new Point();
+            display.getSize(size);
+            int width = size.x;
+            int height = size.y;
+
+            final int standard = width/2;
+            final int pageStantard = 350;
+            final String allpage = intent.getStringExtra("allpage");
+            final String booknamestr = intent.getStringExtra("title");
+
+
 
             Log.d("ggb page",pagenumber+"");
 
@@ -74,8 +97,11 @@ public class myBook extends AppCompatActivity {
             rbtn.setOnClickListener(new View.OnClickListener() {
                 public void onClick(View view) {
                     Intent intent = new Intent(getApplicationContext(),sandClock.class);
-                    intent.putExtra("title",title);
+                    intent.putExtra("filename",title);
                     intent.putExtra("page",pagenumber+"");
+                    intent.putExtra("title",booknamestr);
+                    intent.putExtra("allpage",allpage);
+                    intent.putExtra("userid",userid);
 
                     startActivity(intent);
                 }
@@ -95,14 +121,12 @@ public class myBook extends AppCompatActivity {
 
 
 
-            Display display = getWindowManager().getDefaultDisplay();
-            Point size = new Point();
-            display.getSize(size);
-            int width = size.x;
-            int height = size.y;
 
-            final int standard = width/2;
-            final int pageStantard = 350;
+
+
+
+            page.setText(pagenumber+"/"+allpage);
+            bookname.setText(booknamestr);
 
 
             book.setText(allText.substring((pagenumber*pageStantard),(pagenumber+1)*pageStantard));//처음 페이지 보여주기
@@ -121,8 +145,6 @@ public class myBook extends AppCompatActivity {
 
                     if(event.getAction() == MotionEvent.ACTION_DOWN){
                         if(event.getX()<standard && pagenumber >=1 ){
-
-
                             proText = currentText.concat(proText);
                             currentText = preText.substring(preText.length()-pageStantard);
                             preText = preText.substring(0,preText.length()-pageStantard);
@@ -131,10 +153,10 @@ public class myBook extends AppCompatActivity {
 
                             pagenumber--;
 
-                            page.setText(pagenumber+"");
+                            page.setText(pagenumber+"/"+allpage);
                         }
 
-                        else if(event.getX()>standard){
+                        else if(event.getX()>standard && pagenumber < Integer.parseInt(allpage)){
                             try{
                                 preText = preText.concat(currentText);
                                 currentText = proText.substring(0,pageStantard);
@@ -143,7 +165,7 @@ public class myBook extends AppCompatActivity {
                                 book.setText(currentText);
                                 pagenumber++;
 
-                                page.setText(pagenumber+"");
+                                page.setText(pagenumber+"/"+allpage);
                             }
                             catch(Exception e){
                                 e.printStackTrace();
@@ -161,7 +183,7 @@ public class myBook extends AppCompatActivity {
     }
 
 
-
+    //뒤로가기 누르면 본곳까지 정하고 나가기
     @Override
     public void onBackPressed() {
         try{
