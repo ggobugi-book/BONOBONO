@@ -40,6 +40,8 @@ public class myBook extends AppCompatActivity {
 
 
 
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -74,6 +76,9 @@ public class myBook extends AppCompatActivity {
         try{
             final EditText book = (EditText)findViewById(R.id.book);
 
+            book.setClickable(false);
+            book.setFocusable(false);
+
             final String allText = readFromAssets(intent.getExtras().getString("filename")+".txt");
 
             pagenumber = Integer.parseInt(intent.getExtras().getString("page"));
@@ -91,11 +96,13 @@ public class myBook extends AppCompatActivity {
 
 
 
-            Log.d("ggb page",pagenumber+"");
+
 
 
             rbtn.setOnClickListener(new View.OnClickListener() {
                 public void onClick(View view) {
+                    RegisterActivity task = new RegisterActivity();
+                    task.execute("updatePage",userid, title,pagenumber+"");
                     Intent intent = new Intent(getApplicationContext(),sandClock.class);
                     intent.putExtra("filename",title);
                     intent.putExtra("page",pagenumber+"");
@@ -109,6 +116,8 @@ public class myBook extends AppCompatActivity {
 
             memobtn.setOnClickListener(new View.OnClickListener() {
                 public void onClick(View view) {
+                    RegisterActivity task = new RegisterActivity();
+                    task.execute("updatePage",userid, title,pagenumber+"");
                     Intent intent = new Intent(getApplicationContext(),memoPopupActivity.class);
 
                     intent.putExtra("title",title);

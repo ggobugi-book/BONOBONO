@@ -41,11 +41,13 @@ networkSeries.dataFields.children = "children";
 networkSeries.dataFields.name = "named";
 networkSeries.dataFields.id = "named"; */
 
+
+
 networkSeries.nodes.template.label.text = "{name}"
 networkSeries.fontSize = 30;
 networkSeries.linkWithStre1ngth = 0;
 networkSeries.links.template.distance = 1;
-networkSeries.maxRadius = am4core.percent(15);
+networkSeries.maxRadius = am4core.percent(10);
 networkSeries.manyBodyStrength = -16;
 networkSeries.nodes.template.label.hideOversized = true;
 networkSeries.nodes.template.label.truncate = true;

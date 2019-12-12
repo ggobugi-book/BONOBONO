@@ -7,7 +7,7 @@ import android.content.Context;
 import android.content.Intent;
 
 
-import android.util.Log;
+
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -77,10 +77,10 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.CustomView
 
             final String[] titlepage = result.split(",");
 
-            Log.d("ggb title,page",result);
+
 
             //프로그래스바 값 받아오고 넣기 시작
-            float fa= hm.get(title)/Float.parseFloat(titlepage[1]);
+            float fa= hm.get(title)/(Float.parseFloat(titlepage[1])-2);
             int k = Math.round(fa*100);
 
             viewholder.pagetext.setText(k+"%");

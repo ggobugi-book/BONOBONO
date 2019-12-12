@@ -10,8 +10,8 @@ import android.widget.ImageView;
 import com.bumptech.glide.Glide;
 
 public class sandClock extends AppCompatActivity {
-    getRelation pp = new getRelation(getIntent());
-    Thread th = new Thread(pp);
+    getRelation pp;
+    Thread th;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,8 +23,8 @@ public class sandClock extends AppCompatActivity {
         ImageView sandclock = (ImageView)findViewById(R.id.sandclock);
         Glide.with(this).load(R.raw.book1_edit).into(sandclock);
 
-
-
+        pp= new getRelation(getIntent());
+        th = new Thread(pp);
         th.start();
 
 
