@@ -1,20 +1,20 @@
 package com.example.myapplication;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Context;
 import android.content.Intent;
+
+
 import android.util.Log;
-import android.util.TypedValue;
-import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
-import android.widget.Toast;
+
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -24,7 +24,7 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.CustomView
 
     private ArrayList<Dic> mList;
     private Context context;
-    HashMap hm;
+    HashMap<String,Integer> hm;
     String id;
 
 
@@ -32,14 +32,16 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.CustomView
     public class CustomViewHolder extends RecyclerView.ViewHolder {
 
         protected ImageView image;
-        protected TextView title;
+        protected ProgressBar progress;
+        protected TextView pagetext;
+
 
 
         public CustomViewHolder(View view) {
             super(view);
             this.image = (ImageView) view.findViewById(R.id.thumbnail);
-            this.title = (TextView) view.findViewById(R.id.title);
-
+            this.progress = (ProgressBar) view.findViewById(R.id.title);
+            this.pagetext = (TextView)view.findViewById(R.id.pagetext);
         }
     }
 
@@ -67,8 +69,30 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.CustomView
         viewholder.image.setImageDrawable(mList.get(position).getImage());
         final String title = mList.get(position).getTitle();
 
+        try{
+            RegisterActivity task = new RegisterActivity();//서버관련해여 객체 생성
+            String result = task.execute("getBookPage",title).get();//flag:getBookList를 사용하여
 
-        viewholder.title.setText("");
+
+
+            //프로그래스바 값 받아오고 넣기 시작
+            float fa= hm.get(title)/Float.parseFloat(result);
+            int k = Math.round(fa*100);
+
+            viewholder.pagetext.setText(k+"%");
+            viewholder.progress.setProgress(k);
+            //프로그래스바 값 받아오고 넣기 끝
+
+        }
+        catch(Exception e){
+
+        }
+
+
+
+
+
+
 
 
         viewholder.image.setOnClickListener(new View.OnClickListener() {

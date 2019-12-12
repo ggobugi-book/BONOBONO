@@ -38,12 +38,15 @@ public class myBook extends AppCompatActivity {
     Thread t = new Thread(au);
 
 
-    TextView page = (TextView)findViewById(R.id.pagenumber);
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_my_book);
+
+
+        final TextView page = (TextView)findViewById(R.id.pagenumber);
 
         Typeface fontAwsome = Typeface.createFromAsset(getAssets(), "fontawesome-webfont.ttf");
         Intent intent = getIntent();
@@ -64,7 +67,10 @@ public class myBook extends AppCompatActivity {
             final EditText book = (EditText)findViewById(R.id.book);
 
             final String allText = readFromAssets(intent.getExtras().getString("filename")+".txt");
+
             pagenumber = Integer.parseInt(intent.getExtras().getString("page"));
+
+            page.setText(pagenumber+"");
 
             Log.d("ggb page",pagenumber+"");
 
@@ -129,7 +135,7 @@ public class myBook extends AppCompatActivity {
 
                             pagenumber--;
 
-                            page.setText(pagenumber);
+                            page.setText(pagenumber+"");
                         }
 
                         else if(event.getX()>standard){
@@ -141,7 +147,7 @@ public class myBook extends AppCompatActivity {
                                 book.setText(currentText);
                                 pagenumber++;
 
-                                page.setText(pagenumber);
+                                page.setText(pagenumber+"");
                             }
                             catch(Exception e){
                                 e.printStackTrace();

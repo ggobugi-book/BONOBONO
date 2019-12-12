@@ -7,7 +7,8 @@
     tools:context=".sandClock"
     android:orientation="vertical"
     android:layout_gravity="center"
-    android:background="#000000">
+    android:background="#ffffff">
+    <!--book1 = f4f4f4-->
 
     <ImageView
         android:id="@+id/sandclock"

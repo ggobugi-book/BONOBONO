@@ -17,8 +17,9 @@ public class sandClock extends AppCompatActivity {
         setContentView(R.layout.activity_sand_clock);
 
 
+
         ImageView sandclock = (ImageView)findViewById(R.id.sandclock);
-        Glide.with(this).load(R.raw.flower).into(sandclock);
+        Glide.with(this).load(R.raw.book1_edit).into(sandclock);
 
         getRelation pp = new getRelation(getIntent());
         Thread th = new Thread(pp);
@@ -38,12 +39,17 @@ public class sandClock extends AppCompatActivity {
         };
         public void run(){
             try {
-                RegisterActivity task = new RegisterActivity();
-                String result = task.execute("relation","1", "1").get();
-                result = result.replace("\\","");
-                Log.d("ggb sandclock",result);
 
-                Intent intent = new Intent(getApplicationContext(),RelationTest.class);
+                Intent intent = getIntent();
+                String title = intent.getStringExtra("title");
+                int page = Integer.parseInt(intent.getStringExtra("page"))+1;
+
+                RegisterActivity task = new RegisterActivity();
+                String result = task.execute("relation",title, page+"").get();
+                result = result.replace("\\","");
+
+
+                intent = new Intent(getApplicationContext(),RelationTest.class);
                 intent.putExtra("result",result);
 
                 startActivity(intent);
