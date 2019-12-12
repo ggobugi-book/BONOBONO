@@ -71,7 +71,8 @@
                     android:layout_width="1dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="@string/fa_draw_polygon"
+                    android:text="@string/fa_bring_front"
+                    android:textSize="30dp"
                     android:background="#00ff0000"
                   />
 
@@ -81,6 +82,7 @@
                     android:layout_weight="1"
                     android:layout_height="wrap_content"
                     android:text="@string/fa_edit"
+                    android:textSize="30dp"
                     android:background="#00ff0000"
                   />
 

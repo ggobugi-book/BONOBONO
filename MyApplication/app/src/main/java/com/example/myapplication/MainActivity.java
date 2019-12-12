@@ -61,30 +61,5 @@ public class MainActivity extends AppCompatActivity {
         finish();
     }
 
-
-
-
-
-
-//        loginBtn = (Button)findViewById(R.id.login_btn);
-//        joinBtn = (Button)findViewById(R.id.join_btn);
-
-//        loginBtn.setOnClickListener(new View.OnClickListener() {
-//            public void onClick(View view) {
-//                Intent intent = new Intent(getApplicationContext(),loginActivity.class);
-//                startActivity(intent);
-//            }
-//        });
-//
-//        joinBtn.setOnClickListener(new View.OnClickListener() {
-//            public void onClick(View view) {
-//                Intent intent = new Intent(getApplicationContext(),joinActivity.class);
-//                startActivity(intent);
-//            }
-//        });
-
-
-
-
     }
 
