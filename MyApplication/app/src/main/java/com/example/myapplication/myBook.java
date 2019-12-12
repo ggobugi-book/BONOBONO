@@ -55,7 +55,7 @@ public class myBook extends AppCompatActivity {
 
         Button rbtn = (Button)findViewById(R.id.relation);
         Button memobtn = (Button)findViewById(R.id.memobtn);
-        final TextView page = (TextView)findViewById(R.id.pagenumber);
+
 
         rbtn.setTypeface(fontAwsome);
         memobtn.setTypeface(fontAwsome);

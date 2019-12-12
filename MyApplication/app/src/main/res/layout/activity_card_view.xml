@@ -16,9 +16,6 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-
-
-
         <LinearLayout
             android:id="@+id/constraint_header"
             android:layout_width="match_parent"
@@ -31,9 +28,6 @@
             android:background="#00FF0000"
 
             >
-
-
-
         </LinearLayout>
 
         <LinearLayout
